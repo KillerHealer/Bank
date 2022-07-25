@@ -1,7 +1,7 @@
-import xml.etree.ElementTree as et
+import sys
+import xml.etree.ElementTree as ET
 from statistics import median
 import numpy as np
-import xml.dom.minidom as MD
 import bankAccount
 import personalInfo
 import studentBankAccount
@@ -18,13 +18,13 @@ class Bank:
             s += item.__str__() + "\n"
         return s
 
-    def load_and_parse_init_data(self):
+    def load_and_parse_init_data(self, file: str):
         """
         loads and parses data from init.xml
         :return: True/False for success
         """
-        f = open("init.xml")
-        tree = et.parse(f)
+        f = open(file)
+        tree = ET.parse(f)
         root = tree.getroot()
         for item in root.findall('account'):
             if item.attrib['type'] == "StudentBankAccount":
@@ -42,7 +42,8 @@ class Bank:
                 a3 = businessBankAccount.BusinessBankAccount(
                     personalInfo.PersonalInfo(item[0][0].text, int(item[0][1].text),
                                               item[0][2].text, item[0][3].text),
-                    int(item[1].text), item[2])
+                    int(item[1].text),
+                    businessBankAccount.BusinessInfo(item[2][0].text, item[2][1].text, item[2][2].text))
                 self.add_new_account(a3)
 
     def add_new_account(self, bankacc):
@@ -75,7 +76,7 @@ class Bank:
         else:
             return True
 
-    def Withdraw_by_user_id(self, pid: int, cash: int):
+    def withdraw_by_user_id(self, pid: int, cash: int):
         """
         searches for the account with the id provided and withdraws the amount provided
         (doesn't update in file)
@@ -93,7 +94,7 @@ class Bank:
         else:
             return False
 
-    def Deposit_by_user_id(self, pid: int, cash: int):
+    def deposit_by_user_id(self, pid: int, cash: int):
         """
         searches for the account with the id provided and deposits the amount provided
         (doesn't update in file)
@@ -120,11 +121,9 @@ class Bank:
          90th percentile and 10th percentile of the balances
         """
         balances = []
-        cnt = 0
         isum = 0
         for item in self._accounts:
-            balances[cnt] = item._balance
-            cnt += 1
+            balances.append(item._balance)
             isum += item._balance
         ave = isum / len(balances)
         medi = median(balances)
@@ -134,6 +133,16 @@ class Bank:
         return result
 
 
-b1 = Bank([])
-b1.load_and_parse_init_data()
-print(b1)
+if __name__ == '__main__':
+    b1 = Bank([])
+    if len(sys.argv) > 1:
+        b1.load_and_parse_init_data(str(sys.argv[1]))
+    else:
+        b1.load_and_parse_init_data("init.xml")
+    print(b1)
+    print(b1.calc_balance_statistics())
+    print()
+    b1.deposit_by_user_id(1234567, 555)
+    b1.withdraw_by_user_id(123654321, 5)
+    b1.delete_by_userID(22334455)
+    print(b1)

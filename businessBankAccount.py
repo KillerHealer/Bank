@@ -1,6 +1,16 @@
 from bankAccount import BankAccount
 
 
+class BusinessInfo:
+    def __init__(self, name: str, model: str, size: str):
+        self._name = name
+        self._model = model
+        self._size = size
+
+    def __str__(self):
+        return f"Company name: {self._name}, Model: {self._model}, Size: {self._size}"
+
+
 class BusinessBankAccount(BankAccount):
     def __init__(self, personalInfo, balance: int, business_info):
         super().__init__(personalInfo, balance)
@@ -15,7 +25,7 @@ class BusinessBankAccount(BankAccount):
         :param cash: to withdraw out of balance
         :return:True/False if success
         """
-        self._balance -= 12 - cash
+        self._balance -= 25 - cash
         return True
 
     def deposit(self, cash: int):
@@ -24,6 +34,6 @@ class BusinessBankAccount(BankAccount):
         :param cash: to deposit into balance
         :return:True/False if success
         """
-        self._balance += cash - 12
+        self._balance += cash - 25
         return True
 

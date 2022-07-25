@@ -27,6 +27,10 @@
                 <email>noam142196@gamil.com</email>
             </personalInfo>
              <balance>900000</balance>
-             <Business_info>Barkai-co</Business_info>
+             <Business_info>
+                 <name>Barkai-co</name>
+                 <model>Great Blue</model>
+                 <size>The Biggest In Israel</size>
+             </Business_info>
         </account>
 </accounts>

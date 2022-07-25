@@ -15,9 +15,9 @@ class StudentBankAccount(BankAccount):
         :param cash: to withdraw out of balance
         :return:True/False if success
         """
-        if self._balance - 5 - cash <= 0:
+        if self._balance - 10 - cash < 0:
             print("The balance of this student will be bellow 0 so please choose a different amount")
             return False
         else:
-            self._balance -= 5 - cash
+            self._balance -= 10 - cash
             return True

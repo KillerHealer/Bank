@@ -15,7 +15,7 @@ class BankAccount:
         :param cash: to withdraw out of balance
         :return:True/False if success
         """
-        self._balance -= 5 - cash
+        self._balance -= 10 - cash
         return True
 
     def deposit(self, cash: int):
@@ -24,5 +24,5 @@ class BankAccount:
         :param cash: to deposit into balance
         :return:True/False if success
         """
-        self._balance += cash - 5
+        self._balance += cash - 10
         return True
