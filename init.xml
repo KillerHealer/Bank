@@ -1,3 +1,4 @@
+<?xml version="1.0" encoding="UTF-8" ?>
 <accounts>
         <account type = "StudentBankAccount">
             <personalInfo>
@@ -5,7 +6,8 @@
                 <id>1234567</id>
                 <phone>0523-555444</phone>
                 <email>katiab@sela.co.il</email>
-                </personalInfo>
+            </personalInfo>
+            <balance>10000</balance>
             <college>Sela</college>
         </account>
         <account type = "BankAccount">
@@ -15,6 +17,7 @@
                 <phone>0546-222333</phone>
                 <email>talc@gamil.com</email>
             </personalInfo>
+            <balance>50000</balance>
         </account>
          <account type = "BusinessBankAccount">
             <personalInfo>
@@ -23,6 +26,7 @@
                 <phone>0509-400862</phone>
                 <email>noam142196@gamil.com</email>
             </personalInfo>
+             <balance>900000</balance>
              <Business_info>Barkai-co</Business_info>
         </account>
 </accounts>

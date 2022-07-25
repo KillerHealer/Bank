@@ -1,5 +1,5 @@
 class PersonalInfo:
-    def __init__(self, name: str, id: int, phoneNumber: int, emailadress: str):
+    def __init__(self, name: str, id: int, phoneNumber, emailadress: str):
         self._name = name
         self._id = id
         self._phoneNum = phoneNumber

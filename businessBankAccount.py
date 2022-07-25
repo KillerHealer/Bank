@@ -7,7 +7,7 @@ class BusinessBankAccount(BankAccount):
         self._businessInfo = business_info
 
     def __str__(self):
-        return f"{super.__str__()}, businessInfo: {self._businessInfo}"
+        return f"{super().__str__()}, businessInfo: {self._businessInfo}"
 
     def withdraw(self, cash: int):
         """
