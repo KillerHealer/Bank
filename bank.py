@@ -2,7 +2,7 @@ import bankAccount
 
 
 class Bank:
-    def __init__(self, accounts = []):
+    def __init__(self, accounts: []):
         self._accounts = accounts
 
     def __str__(self):
@@ -18,17 +18,39 @@ class Bank:
     def add_new_account(self, bankacc):
         self._accounts.append(bankacc)
 
-    def delete_by_userID(self):
-        pass
-
-    def Withdraw_by_user_id(self, id: int):
-        bulseye = 0
+    def delete_by_userID(self, pid: int):
+        bullseye = bankAccount.BankAccount
         for item in self._accounts:
-            if item._personalInfo._id == id:
-                pass
+            if item._personalInfo._id == pid:
+                bullseye = item
+                break
+        self._accounts.remove(bullseye)
+        if bullseye in self._accounts:
+            return False
+        else:
+            return True
 
-    def Deposit_by_user_id(self):
-        pass
+    def Withdraw_by_user_id(self, pid: int, cash: int):
+        bullseye = bankAccount.BankAccount
+        for item in self._accounts:
+            if item._personalInfo._id == pid:
+                bullseye = item
+                break
+        if bullseye.withdraw(cash):
+            return True
+        else:
+            return False
+
+    def Deposit_by_user_id(self, pid: int, cash: int):
+        bullseye = bankAccount.BankAccount
+        for item in self._accounts:
+            if item._personalInfo._id == pid:
+                bullseye = item
+                break
+        if bullseye.deposit(cash):
+            return True
+        else:
+            return False
 
     def calc_balance_statistics(self):
         pass
